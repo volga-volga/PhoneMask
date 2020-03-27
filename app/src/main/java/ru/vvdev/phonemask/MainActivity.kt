@@ -48,23 +48,16 @@ class MainActivity : AppCompatActivity() {
                 p0?.let {
                     val text = it.toString()
                     Log.d("MaskTag", "text = $text")
+                    if(text.isBlank()){
+                        removeFormat()
+                    }
                     formats.forEach {
                         if (text == it.code) {
                             Log.d("MaskTag", "text == it.code")
                             if (it != lastFormat) {
                                 setFormat(it)
-                            } else {
-                                lastFormat = null
-                                Handler().postDelayed({
-                                    Log.d("MaskTag", "removeFormatWatcher")
-                                    blocked = true
-                                    etPhone.removeTextChangedListener(formatWatcher)
-                                    formatWatcher = null
-                                    etPhone.setText(etPhone.text.trim())
-                                    etPhone.setSelection(etPhone.text.length)
-                                    unblock(100)
-                                }, 100)
-                            }
+                            } else removeFormat()
+
                         } else if(p0.contains(it.code) && lastFormat == null && p0.last() != ' '){
                             setFormat(it)
                         }
@@ -82,6 +75,19 @@ class MainActivity : AppCompatActivity() {
         etPhone.addTextChangedListener(mainTextWatcher)
     }
 
+    private fun removeFormat(){
+        lastFormat = null
+        Handler().postDelayed({
+            Log.d("MaskTag", "removeFormatWatcher")
+            blocked = true
+            etPhone.removeTextChangedListener(formatWatcher)
+            formatWatcher = null
+            etPhone.setText(etPhone.text.trim())
+            etPhone.setSelection(etPhone.text.length)
+            unblock(0)
+        }, 0)
+    }
+
     private fun setFormat(format: Format) {
         Log.d("MaskTag", "setFormat")
         lastFormat = format
@@ -89,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         formatWatcher = MaskFormatWatcher(MaskImpl.createTerminated(slots));
         blocked = true
         formatWatcher?.installOn(etPhone)
-        unblock(100)
+        unblock(0)
         handler.postDelayed({etPhone.setSelection(etPhone.text.length)}, 100)
     }
 
