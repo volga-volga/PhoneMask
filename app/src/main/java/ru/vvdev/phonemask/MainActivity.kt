@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity() {
                                     unblock(100)
                                 }, 100)
                             }
+                        } else if(p0.contains(it.code) && lastFormat == null && p0.last() != ' '){
+                            setFormat(it)
                         }
                     }
                 }
@@ -87,7 +89,8 @@ class MainActivity : AppCompatActivity() {
         formatWatcher = MaskFormatWatcher(MaskImpl.createTerminated(slots));
         blocked = true
         formatWatcher?.installOn(etPhone)
-        unblock(200)
+        unblock(100)
+        handler.postDelayed({etPhone.setSelection(etPhone.text.length)}, 100)
     }
 
     private fun unblock(delay: Long = 0L){
