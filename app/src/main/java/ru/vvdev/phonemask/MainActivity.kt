@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         blocked = true
         formatWatcher?.installOn(etPhone)
         unblock(0)
-        handler.postDelayed({etPhone.setSelection(etPhone.text.length)}, 100)
+        handler.postDelayed({etPhone.setSelection(etPhone.text.length)}, 0)
     }
 
     private fun unblock(delay: Long = 0L){
