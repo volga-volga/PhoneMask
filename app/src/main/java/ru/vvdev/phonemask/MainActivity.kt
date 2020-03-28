@@ -19,36 +19,30 @@ class MainActivity : AppCompatActivity() {
     private var lastFormat: Format? = null
     private var finded = false
     private var formatWatcher: MaskFormatWatcher? = null
-    private val emptyFormat = Format("undef", "undef", "____________________________________")
+    private val emptyFormat = Format("undef", "undef", "+9______________________________")
     var formats: List<Format> = listOf()
     private var blocked = false
     private val handler = Handler()
+    private var lastValidText = ""
 
     val mainTextWatcher = object : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
-           // Log.d("MaskTag", "after, text = $p0")
+            p0?.let {
+                if (it.isBlank()) etPhone.setText("+")
+            }
         }
 
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            /*Log.d("MaskTag", "before, text = $p0, p1 = $p1, p2 = $p2, p3 = $p3")
-            if(!blocked){
-                p0?.let {
-                    val text = it.toString()
-                    formats.forEach {
-                        if(text == it.code){
 
-                        }
-                    }
-                }
-            }*/
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
             if (!blocked)
                 p0?.let {
                     val text = it.toString()
                     Log.d("MaskTag", "text = $text")
-                    if(text.isBlank()){
+                    if (text.isBlank()) {
                         removeFormat()
                     }
                     formats.forEach {
@@ -58,8 +52,9 @@ class MainActivity : AppCompatActivity() {
                                 setFormat(it)
                             } else removeFormat()
 
-                        } else if(p0.contains(it.code) && lastFormat == null && p0.last() != ' '){
-                            setFormat(it)
+                        } else if (p0.contains(it.code) && lastFormat == null && p0.last() != ' ') {
+                            removeAllSpace()
+                            setFormat(it, p0.last())
                         }
                     }
                 }
@@ -72,10 +67,14 @@ class MainActivity : AppCompatActivity() {
         val formatsJson = assets.open("formats.json").bufferedReader().readText()
         formats = Gson().fromJson(formatsJson, object : TypeToken<List<Format>>() {}.type)
 
-        etPhone.addTextChangedListener(mainTextWatcher)
+        etPhone.apply {
+            setText("+")
+            setSelection(1)
+            addTextChangedListener(mainTextWatcher)
+        }
     }
 
-    private fun removeFormat(){
+    private fun removeFormat() {
         lastFormat = null
         Handler().postDelayed({
             Log.d("MaskTag", "removeFormatWatcher")
@@ -88,20 +87,28 @@ class MainActivity : AppCompatActivity() {
         }, 0)
     }
 
-    private fun setFormat(format: Format) {
-        Log.d("MaskTag", "setFormat")
+    private fun setFormat(format: Format, append: Char = ' ') {
+        Log.d("MaskTag", "setForma, append = $append")
         lastFormat = format
         val slots = UnderscoreDigitSlotsParser().parseSlots(format.format);
         formatWatcher = MaskFormatWatcher(MaskImpl.createTerminated(slots));
         blocked = true
         formatWatcher?.installOn(etPhone)
+        if (append != ' ')
+            etPhone.text.append(append)
         unblock(0)
-        handler.postDelayed({etPhone.setSelection(etPhone.text.length)}, 0)
+        handler.postDelayed({ etPhone.setSelection(etPhone.text.length) }, 0)
     }
 
-    private fun unblock(delay: Long = 0L){
+    private fun removeAllSpace() {
+        blocked = true
+        etPhone.setText(etPhone.text.toString().replace(" ", ""))
+        unblock()
+    }
+
+    private fun unblock(delay: Long = 0L) {
         Log.d("MaskTag", "setMainTextWatcher")
-        if(delay == 0L) blocked = false
-        else handler.postDelayed({blocked = false}, delay)
+        if (delay == 0L) blocked = false
+        else handler.postDelayed({ blocked = false }, delay)
     }
 }
