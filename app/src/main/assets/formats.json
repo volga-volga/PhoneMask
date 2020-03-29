@@ -9,5 +9,50 @@
         "code": "+355",
         "name": "Albania",
         "format": "+355 ___ ___ ___ ___"
+    },
+
+    {
+        "code": "+213",
+        "name": "Algeria",
+        "format": "+213 ___ ___ ___ ___"
+    },
+
+    {
+        "code": "+1684",
+        "name": "American Samoa",
+        "format": "+1684 ___ ___ ___ __"
+    },
+
+    {
+        "code": "+376",
+        "name": "Andorra",
+        "format": "+376 ___ ___ ___ ___"
+    },
+
+    {
+        "code": "+244",
+        "name": "Angola",
+        "format": "+244 ___ ___ ___ ___"
+    },
+
+    {
+        "code": "+1264",
+        "name": "Anguilla",
+        "format": "+1264 ___ ___ ___ __"
+    },
+
+    {
+        "code": "+1268",
+        "name": "Antigua and Barbuda",
+        "format": "+1268 ___ ___ ___ __"
+    },
+
+    {
+        "code": "+54",
+        "name": "Argentina",
+        "format": "+54 (__) ________"
     }
+
+
+
 ]

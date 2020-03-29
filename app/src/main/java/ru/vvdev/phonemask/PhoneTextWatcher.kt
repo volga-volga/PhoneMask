@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -44,8 +45,8 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         if (!blocked)
-            p0?.let {
-                val text = it.toString()
+            p0?.let { p0 ->
+                val text = getClearedNumber()
                 if (text.isBlank()) removeFormat()
                 formats.forEach {
                     if (text == it.code) {
@@ -64,6 +65,7 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
         handler.postDelayed({
             blocked = true
             editText?.removeTextChangedListener(formatWatcher)
+            editText.setText(getClearedNumber())
             formatWatcher = null
             editText?.setText(editText.text.trim())
             editText?.setSelection(editText.text.length)
@@ -84,7 +86,13 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
 
     private fun removeAllSpace() {
         blocked = true
-        editText.setText(editText.text.toString().replace(" ", ""))
+        editText.setText(
+            editText.text.toString()
+                .replace(" ", "")
+                .replace("(", "")
+                .replace(")", "")
+                .trim()
+        )
         unblock()
     }
 
@@ -92,4 +100,10 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
         if (delay == 0L) blocked = false
         else handler.postDelayed({ blocked = false }, delay)
     }
+
+    private fun getClearedNumber() = editText.text.toString()
+        .replace(" ", "")
+        .replace("(", "")
+        .replace(")", "")
+        .trim()
 }
