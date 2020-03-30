@@ -638,5 +638,261 @@
         "code": "+692",
         "name": "Marshall Islands",
         "format": "+692 ___ ___ ___ ___"
-    }
+    },
+  {
+    "code": "+596",
+    "name": "Martinique",
+    "format": "+596 ___ ___ ___ ___"
+  },
+  {
+    "code": "+222",
+    "name": "Mauritania",
+    "format": "+222 ___ ___ ___ ___"
+  },
+  {
+    "code": "+230",
+    "name": "Mauritius",
+    "format": "+230 ___ ___ ___ ___"
+  },
+  {
+    "code": "+52",
+    "name": "Mexico",
+    "format": "+52 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+691",
+    "name": "Micronesia",
+    "format": "+691 ___ ___ ___ ___"
+  },
+  {
+    "code": "+373",
+    "name": "Moldova",
+    "format": "+373 (__) __-__-__"
+  },
+  {
+    "code": "+377",
+    "name": "Monaco",
+    "format": "+377 ___ ___ ___ ___"
+  },
+  {
+    "code": "+976",
+    "name": "Mongolia",
+    "format": "+976 ___ ___ ___ ___"
+  },
+  {
+    "code": "+382",
+    "name": "Montenegro",
+    "format": "+382 ___ ___ ___ ___"
+  },
+  {
+    "code": "+1664",
+    "name": "Montserrat",
+    "format": "+1664 ___ ___ ___ __"
+  },
+  {
+    "code": "+212",
+    "name": "Morocco",
+    "format": "+212 ___ ___ ___ ___"
+  },
+  {
+    "code": "+258",
+    "name": "Mozambique",
+    "format": "+258 ___ ___ ___ ___"
+  },
+  {
+    "code": "+95",
+    "name": "Myanmar",
+    "format": "+95 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+95",
+    "name": "Myanmar",
+    "format": "+95 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+264",
+    "name": "Namibia",
+    "format": "+264 ___ ___ ___ ___"
+  },
+  {
+    "code": "+674",
+    "name": "Nauru",
+    "format": "+674 ___ ___ ___ ___"
+  },
+  {
+    "code": "+977",
+    "name": "Nepal",
+    "format": "+977 ___ ___ ___ ___"
+  },
+  {
+    "code": "+31",
+    "name": "Netherlands",
+    "format": "+31 __ ________"
+  },
+  {
+    "code": "+687",
+    "name": "New Caledonia",
+    "format": "+687 ___ ___ ___ ___"
+  },
+  {
+    "code": "+64",
+    "name": "New Zealand",
+    "format": "+64 ___-___-____"
+  },
+  {
+    "code": "+505",
+    "name": "Nicaragua",
+    "format": "+505 ___ ___ ___ ___"
+  },
+  {
+    "code": "+227",
+    "name": "Niger",
+    "format": "+227 ___ ___ ___ ___"
+  },
+  {
+    "code": "+234",
+    "name": "Nigeria",
+    "format": "+234 ___ ___ ___ ___"
+  },
+  {
+    "code": "+683",
+    "name": "Niue",
+    "format": "+683 ___ ___ ___ ___"
+  },
+  {
+    "code": "+672",
+    "name": "Norfolk Island",
+    "format": "+672 ___ ___ ___ ___"
+  },
+  {
+    "code": "+672",
+    "name": "Norfolk Island",
+    "format": "+672 ___ ___ ___ ___"
+  },
+  {
+    "code": "+850",
+    "name": "North Korea",
+    "format": "+850 ___ ___ ___ ___"
+  },
+  {
+    "code": "+1670",
+    "name": "Northern Mariana Islands",
+    "format": "+1670 ___ ___ ___ __"
+  },
+  {
+    "code": "+47",
+    "name": "Norway",
+    "format": "+47 ___ __ ___"
+  },
+  {
+    "code": "+968",
+    "name": "Oman",
+    "format": "+968 ___ ___ ___ ___"
+  },
+  {
+    "code": "+92",
+    "name": "Pakistan",
+    "format": "+92 ___-_______"
+  },
+  {
+    "code": "+680",
+    "name": "Palau",
+    "format": "+680 ___ ___ ___ ___"
+  },
+  {
+    "code": "+970",
+    "name": "Palestine",
+    "format": "+970 ___ ___ ___ ___"
+  },
+  {
+    "code": "+507",
+    "name": "Panama",
+    "format": "+507 ___ ___ ___ ___"
+  },
+  {
+    "code": "+675",
+    "name": "Papua New Guinea",
+    "format": "+675 ___ ___ ___ ___"
+  },
+  {
+    "code": "+595",
+    "name": "Paraguay",
+    "format": "+595 ___ ___ ___ ___"
+  },
+  {
+    "code": "+51",
+    "name": "Peru",
+    "format": "+51 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+63",
+    "name": "Philippines",
+    "format": "+63 ____ _______"
+  },
+  {
+    "code": "+48",
+    "name": "Poland",
+    "format": "+48 ___-___-___"
+  },
+  {
+    "code": "+351",
+    "name": "Portugal",
+    "format": "+351 ___ ___ ___ ___"
+  },
+  {
+    "code": "+1",
+    "name": "Puerto Rico",
+    "format": "+1 ___ ___ ___ ___ __"
+  },
+  {
+    "code": "+974",
+    "name": "Qatar",
+    "format": "+974 ___ ___ ___ ___"
+  },
+  {
+    "code": "+262",
+    "name": "Reunion",
+    "format": "+262 ___ ___ ___ ___"
+  },
+  {
+    "code": "+40",
+    "name": "Romania",
+    "format": "+40 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+7",
+    "name": "Russia",
+    "format": "+7 (___) ___-__-__"
+  },
+  {
+    "code": "+250",
+    "name": "Rwanda",
+    "format": "+250 ___ ___ ___ ___"
+  },
+  {
+    "code": "+590",
+    "name": "Saint Barthelemy",
+    "format": "+590 ___ ___ ___ ___"
+  },
+  {
+    "code": "+290",
+    "name": "Saint Helena",
+    "format": "+290 ___ ___ ___ ___"
+  },
+  {
+    "code": "+1869",
+    "name": "Saint Kitts and Nevis",
+    "format": "+1869 ___ ___ ___ __"
+  },
+  {
+    "code": "+1758",
+    "name": "Saint Lucia",
+    "format": "+1758 ___ ___ ___ __"
+  },
+  {
+    "code": "+590",
+    "name": "Saint Martin",
+    "format": "+590 ___ ___ ___ ___"
+  }
+
 ]
