@@ -3,7 +3,9 @@ package ru.vvdev.phonemask
 import android.content.Context
 import android.os.Handler
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
+import android.text.method.DigitsKeyListener
 import android.util.Log
 import android.widget.EditText
 import com.google.gson.Gson
@@ -27,6 +29,7 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
         formats = Gson().fromJson(formatsJson, object : TypeToken<List<Format>>() {}.type)
 
         editText.apply {
+            keyListener = DigitsKeyListener.getInstance("0123456789+ ()-")
             setText("+")
             setSelection(1)
         }
