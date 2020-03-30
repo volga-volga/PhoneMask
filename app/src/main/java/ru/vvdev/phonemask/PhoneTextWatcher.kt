@@ -3,7 +3,6 @@ package ru.vvdev.phonemask
 import android.content.Context
 import android.os.Handler
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.text.method.DigitsKeyListener
 import android.util.Log
@@ -49,30 +48,45 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
 
         if (!blocked)
             p0?.let { p0 ->
-                val text = getClearedNumber()
+                val text = p0.toString()
+                val clearedText = getClearedNumber()
                 if (text.isBlank()) removeFormat()
+                Log.d("MaskTag", "text = $text")
                 formats.forEach {
                     if (text == it.code) {
-                        if (it != lastFormat) setFormat(it)
-                        else removeFormat()
+                        if (it != lastFormat) {
+                            Log.d("MaskTag", "it != lastFormat setFormat")
+                            setFormat(it)
+                        } else {
+                            Log.d("MaskTag", "it == lastFormat removeFormat")
+                            removeFormat()
+                        }
                     } else if (p0.contains(it.code) && lastFormat == null && p0.last() != ' ') {
+                        Log.d("MaskTag", "removeAllSpace setFormat")
                         removeAllSpace()
                         setFormat(it, p0.last())
+                    } else if(p0.contains(it.code) && lastFormat != null && p0.last() == '('){
+                        Log.d("MaskTag", "here")
+                        removeFormat()
+                    } else if(clearedText.contains(it.code) && lastFormat != null && it.code.length > lastFormat!!.code.length){
+                        Log.d("MaskTag", "here2, ${it.code}, last = ${lastFormat?.code}")
+                        removeFormat(it.code)
+                        return
                     }
                 }
             }
     }
 
-    private fun removeFormat() {
+    private fun removeFormat(code: String = "") {
         lastFormat = null
+        blocked = true
         handler.postDelayed({
-            blocked = true
             editText?.removeTextChangedListener(formatWatcher)
-            editText.setText(getClearedNumber())
             formatWatcher = null
-            editText?.setText(editText.text.trim())
+            if(code.isBlank()) editText?.setText(getClearedNumber())
+            else editText?.setText(code)
             editText?.setSelection(editText.text.length)
-            unblock(0)
+            unblock(100)
         }, 0)
     }
 
@@ -83,7 +97,7 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
         blocked = true
         formatWatcher?.installOn(editText)
         if (append != ' ') editText.text.append(append)
-        unblock(0)
+        unblock(100)
         handler.postDelayed({ editText?.setSelection(editText?.text?.length ?: 0) }, 0)
     }
 
@@ -100,13 +114,11 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
     }
 
     private fun unblock(delay: Long = 0L) {
-        if (delay == 0L) blocked = false
-        else handler.postDelayed({ blocked = false }, delay)
+        handler.postDelayed({ blocked = false }, delay)
     }
 
     private fun getClearedNumber() = editText.text.toString()
         .replace(" ", "")
         .replace("(", "")
         .replace(")", "")
-        .trim()
 }
