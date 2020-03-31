@@ -86,6 +86,11 @@ open class PhoneTextWatcher(
             }
     }
 
+    fun setFormatFromPicker(format: Format){
+        removeFormat(format.code)
+        handler.postDelayed({setFormat(format)}, 100)
+    }
+
     private fun removeFormat(code: String = "") {
         lastFormat = null
         blocked = true

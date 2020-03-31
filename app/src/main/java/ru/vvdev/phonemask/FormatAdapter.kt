@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_format.view.*
 
-class FormatAdapter(val data: List<Format>) : RecyclerView.Adapter<FormatAdapter.ViewHolder>() {
+class FormatAdapter(val data: List<Format>, val listener: Listener) :
+    RecyclerView.Adapter<FormatAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_format, parent, false)
@@ -22,9 +23,21 @@ class FormatAdapter(val data: List<Format>) : RecyclerView.Adapter<FormatAdapter
         }
     }
 
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val flag = itemView.ivFlag
         val code = itemView.tvCode
         val country = itemView.tvCountry
+
+        init {
+            view.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            listener.formatClicked(data[adapterPosition])
+        }
+    }
+
+    interface Listener {
+        fun formatClicked(format: Format)
     }
 }

@@ -81,6 +81,11 @@ class PhoneView @JvmOverloads constructor(
         }
 
     private fun showPickDialog() {
+
+        val dialog = AlertDialog.Builder(context)
+            .create()
+
+
         val dialogView = LayoutInflater.from(context).inflate(R.layout.fragment_pick_format, null)
         val formatsJson = context?.assets?.open("formats.json")?.bufferedReader()?.readText() ?: ""
         val formats: List<Format> =
@@ -88,11 +93,14 @@ class PhoneView @JvmOverloads constructor(
         dialogView.rvFormats.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = FormatAdapter(formats)
+            adapter = FormatAdapter(formats, object : FormatAdapter.Listener{
+                override fun formatClicked(format: Format) {
+                    phoneTextWatcher.setFormatFromPicker(format)
+                    dialog.dismiss()
+                }
+            })
         }
-        val dialog = AlertDialog.Builder(context)
-            .setView(dialogView)
-            .create()
+        dialog.setView(dialogView)
         dialog.show()
     }
 }
