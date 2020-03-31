@@ -62,29 +62,23 @@ open class PhoneTextWatcher(
                 val text = p0.toString()
                 val clearedText = getClearedNumber()
                 if (text.isBlank()) removeFormat()
-                Log.d("MaskTag", "text = $text")
                 formats.forEach {
                     if (text == it.code) {
                         if (it != lastFormat) {
-                            Log.d("MaskTag", "it != lastFormat setFormat, ${it.code}")
                             setFormat(it)
                             return
                         } else {
-                            Log.d("MaskTag", "it == lastFormat removeFormat, ${it.code}")
                             removeFormat()
                             return
                         }
                     } else if (p0.contains(it.code) && lastFormat == null && p0.last() != ' ') {
-                        Log.d("MaskTag", "removeAllSpace setFormat, ${it.code}")
                         removeAllSpace()
                         setFormat(it, p0.last())
                         return
                     } else if (p0.contains(it.code) && lastFormat != null && p0.last() == '(') {
-                        Log.d("MaskTag", "here, removeFormat, ${it.code}")
                         removeFormat()
                         return
                     } else if (clearedText.contains(it.code) && lastFormat != null && it.code.length > lastFormat?.code?.length ?: 0) {
-                        Log.d("MaskTag", "here2, ${it.code}, last = ${lastFormat?.code}")
                         removeFormat(it.code)
                         return
                     }
