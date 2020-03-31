@@ -5,12 +5,12 @@ import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.DigitsKeyListener
-import android.util.Log
 import android.widget.EditText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
+import java.util.*
 
 open class PhoneTextWatcher(
     private val editText: EditText, var listener: PhoneListener? = null,
@@ -28,6 +28,8 @@ open class PhoneTextWatcher(
         context = editText.context
         val formatsJson = context?.assets?.open("formats.json")?.bufferedReader()?.readText() ?: ""
         formats = Gson().fromJson(formatsJson, object : TypeToken<List<Format>>() {}.type)
+
+        swapElements()
 
         editText.apply {
             keyListener = DigitsKeyListener.getInstance("0123456789+ ()-")
@@ -86,9 +88,9 @@ open class PhoneTextWatcher(
             }
     }
 
-    fun setFormatFromPicker(format: Format){
+    fun setFormatFromPicker(format: Format) {
         removeFormat(format.code)
-        handler.postDelayed({setFormat(format)}, 100)
+        handler.postDelayed({ setFormat(format) }, 100)
     }
 
     private fun removeFormat(code: String = "") {
@@ -136,4 +138,14 @@ open class PhoneTextWatcher(
         .replace(" ", "")
         .replace("(", "")
         .replace(")", "")
+
+    private fun swapElements() {
+        formats.find { it.name == "United States" }?.let {
+            Collections.swap(formats, formats.indexOf(it), 0)
+        }
+        formats.find { it.name == "Russia" }?.let {
+            Collections.swap(formats, formats.indexOf(it), 1)
+        }
+
+    }
 }
