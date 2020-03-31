@@ -12,7 +12,10 @@ import com.google.gson.reflect.TypeToken
 import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
 
-open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
+open class PhoneTextWatcher(
+    private val editText: EditText, var listener: PhoneListener? = null,
+    private val defaultFormat: String = "+1"
+) : TextWatcher {
 
     private var lastFormat: Format? = null
     private var formatWatcher: SafeMaskFormatWatcher? = null
@@ -28,14 +31,23 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
 
         editText.apply {
             keyListener = DigitsKeyListener.getInstance("0123456789+ ()-")
-            setText("+")
-            setSelection(1)
+            val default = if (defaultFormat.isNotBlank() && defaultFormat.first() == '+')
+                defaultFormat else "+1"
+
+            setText(default)
+            formats.find { it.code == default }?.let {
+                listener?.formatChanged(it)
+            }
+            setSelection(editText.text.length)
         }
     }
 
     override fun afterTextChanged(p0: Editable?) {
         p0?.let {
-            if (it.isBlank()) editText.setText("+")
+            if (it.isBlank()) {
+                editText.setText("+")
+                editText.setSelection(1)
+            }
         }
     }
 
@@ -67,11 +79,11 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
                         removeAllSpace()
                         setFormat(it, p0.last())
                         return
-                    } else if(p0.contains(it.code) && lastFormat != null && p0.last() == '('){
+                    } else if (p0.contains(it.code) && lastFormat != null && p0.last() == '(') {
                         Log.d("MaskTag", "here, removeFormat, ${it.code}")
                         removeFormat()
                         return
-                    } else if(clearedText.contains(it.code) && lastFormat != null && it.code.length > lastFormat?.code?.length ?: 0){
+                    } else if (clearedText.contains(it.code) && lastFormat != null && it.code.length > lastFormat?.code?.length ?: 0) {
                         Log.d("MaskTag", "here2, ${it.code}, last = ${lastFormat?.code}")
                         removeFormat(it.code)
                         return
@@ -86,7 +98,7 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
         handler.postDelayed({
             editText?.removeTextChangedListener(formatWatcher)
             formatWatcher = null
-            if(code.isBlank()) editText?.setText(getClearedNumber())
+            if (code.isBlank()) editText?.setText(getClearedNumber())
             else editText?.setText(code)
             editText?.setSelection(editText.text.length)
             unblock(100)
@@ -95,6 +107,7 @@ open class PhoneTextWatcher(private val editText: EditText) : TextWatcher {
 
     private fun setFormat(format: Format, append: Char = ' ') {
         lastFormat = format
+        listener?.formatChanged(format)
         val slots = UnderscoreDigitSlotsParser().parseSlots(format.format);
         formatWatcher = SafeMaskFormatWatcher(MaskImpl.createTerminated(slots));
         blocked = true
