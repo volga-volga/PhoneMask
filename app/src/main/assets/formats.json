@@ -614,31 +614,31 @@
     "name": "Madagascar",
     "format": "+261 ___ ___ ___ ___"
   },
-    {
-        "code": "+265",
-        "name": "Malawi",
-        "format": "+265 ___ ___ ___ ___"
-    },
-    {
-        "code": "+60",
-        "name": "Malaysia",
-        "format": "+60 __-____-____"
-    },
-    {
-        "code": "+223",
-        "name": "Mali",
-        "format": "+223 ___ ___ ___ ___"
-    },
-    {
-        "code": "+356",
-        "name": "Malta",
-        "format": "+356 ___ ___ ___ ___"
-    },
-    {
-        "code": "+692",
-        "name": "Marshall Islands",
-        "format": "+692 ___ ___ ___ ___"
-    },
+  {
+    "code": "+265",
+    "name": "Malawi",
+    "format": "+265 ___ ___ ___ ___"
+  },
+  {
+    "code": "+60",
+    "name": "Malaysia",
+    "format": "+60 __-____-____"
+  },
+  {
+    "code": "+223",
+    "name": "Mali",
+    "format": "+223 ___ ___ ___ ___"
+  },
+  {
+    "code": "+356",
+    "name": "Malta",
+    "format": "+356 ___ ___ ___ ___"
+  },
+  {
+    "code": "+692",
+    "name": "Marshall Islands",
+    "format": "+692 ___ ___ ___ ___"
+  },
   {
     "code": "+596",
     "name": "Martinique",
@@ -893,6 +893,290 @@
     "code": "+590",
     "name": "Saint Martin",
     "format": "+590 ___ ___ ___ ___"
+  },
+  {
+    "code": "+508",
+    "name": "Saint Pierre and Miquelon",
+    "format": "+508 ___ ___ ___ ___"
+  },
+  {
+    "code": "+1784",
+    "name": "Saint Vincent and the Grenadines",
+    "format": "+1784 ___ ___ ___ __"
+  },
+  {
+    "code": "+685",
+    "name": "Samoa",
+    "format": "+685 ___ ___ ___ ___"
+  },
+  {
+    "code": "+378",
+    "name": "San Marino",
+    "format": "+378 ___ ___ ___ ___"
+  },
+  {
+    "code": "+239",
+    "name": "Sao Tome and Principe",
+    "format": "+239 ___ ___ ___ ___"
+  },
+  {
+    "code": "+966",
+    "name": "Saudi Arabia",
+    "format": "+966 ___ ___ ___ ___"
+  },
+  {
+    "code": "+221",
+    "name": "Senegal",
+    "format": "+221 ___ ___ ___ ___"
+  },
+  {
+    "code": "+381",
+    "name": "Serbia",
+    "format": "+381 ___ ___ ___ ___"
+  },
+  {
+    "code": "+248",
+    "name": "Seychelles",
+    "format": "+248 ___ ___ ___ ___"
+  },
+  {
+    "code": "+232",
+    "name": "Sierra Leone",
+    "format": "+232 ___ ___ ___ ___"
+  },
+  {
+    "code": "+65",
+    "name": "Singapore",
+    "format": "+65 ____-____"
+  },
+  {
+    "code": "+1721",
+    "name": "Sint Maarten",
+    "format": "+1721 ___ ___ ___ __"
+  },
+  {
+    "code": "+421",
+    "name": "Slovakia",
+    "format": "+421 ___ ___ ___ ___"
+  },
+  {
+    "code": "+386",
+    "name": "Slovenia",
+    "format": "+386 ___ ___ ___ ___"
+  },
+  {
+    "code": "+677",
+    "name": "Solomon Islands",
+    "format": "+677 ___ ___ ___ ___"
+  },
+  {
+    "code": "+252",
+    "name": "Somalia",
+    "format": "+252 ___ ___ ___ ___"
+  },
+  {
+    "code": "+27",
+    "name": "South Africa",
+    "format": "+27 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+82",
+    "name": "South Korea",
+    "format": "+82 ___ ____ ____"
+  },
+  {
+    "code": "+211",
+    "name": "South Sudan",
+    "format": "+211 ___ ___ ___ ___"
+  },
+  {
+    "code": "+34",
+    "name": "Spain",
+    "format": "+34 ___ ___ ___"
+  },
+  {
+    "code": "+94",
+    "name": "Sri Lanka",
+    "format": "+94 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+249",
+    "name": "Sudan",
+    "format": "+249 ___ ___ ___ ___"
+  },
+  {
+    "code": "+597",
+    "name": "Suriname",
+    "format": "+597 ___ ___ ___ ___"
+  },
+  {
+    "code": "+268",
+    "name": "Swaziland",
+    "format": "+268 ___ ___ ___ ___"
+  },
+  {
+    "code": "+46",
+    "name": "Sweden",
+    "format": "+46 (___) ___-___"
+  },
+  {
+    "code": "+41",
+    "name": "Switzerland",
+    "format": "+41 __ ___ __ __"
+  },
+  {
+    "code": "+963",
+    "name": "Syria",
+    "format": "+963 ___ ___ ___ ___"
+  },
+  {
+    "code": "+886",
+    "name": "Taiwan",
+    "format": "+886 ___ ___ ___ ___"
+  },
+  {
+    "code": "+992",
+    "name": "Tajikistan",
+    "format": "+992 ___ ___ ___ ___"
+  },
+  {
+    "code": "+255",
+    "name": "Tanzania",
+    "format": "+255 ___ ___ ___ ___"
+  },
+  {
+    "code": "+66",
+    "name": "Thailand",
+    "format": "+66 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+670",
+    "name": "Timor-Leste",
+    "format": "+670 ___ ___ ___ ___"
+  },
+  {
+    "code": "+228",
+    "name": "Togo",
+    "format": "+228 ___ ___ ___ ___"
+  },
+  {
+    "code": "+690",
+    "name": "Tokelau",
+    "format": "+690 ___ ___ ___ ___"
+  },
+  {
+    "code": "+676",
+    "name": "Tonga",
+    "format": "+676 ___ ___ ___ ___"
+  },
+  {
+    "code": "+1868",
+    "name": "Trinidad and Tobago",
+    "format": "+1868 ___ ___ ___ __"
+  },
+  {
+    "code": "+216",
+    "name": "Tunisia",
+    "format": "+216 ___ ___ ___ ___"
+  },
+  {
+    "code": "+90",
+    "name": "Turkey",
+    "format": "+90 ___ ___ __ __"
+  },
+  {
+    "code": "+993",
+    "name": "Turkmenistan",
+    "format": "+993 ___ ___ ___ ___"
+  },
+  {
+    "code": "+1649",
+    "name": "Turks and Caicos Islands",
+    "format": "+1649 ___ ___ ___ __"
+  },
+  {
+    "code": "+688",
+    "name": "Tuvalu",
+    "format": "+688 ___ ___ ___ ___"
+  },
+  {
+    "code": "+1340",
+    "name": "U.S. Virgin Islands",
+    "format": "+1340 ___ ___ ___ __"
+  },
+  {
+    "code": "+256",
+    "name": "Uganda",
+    "format": "+256 ___ ___ ___ ___"
+  },
+  {
+    "code": "+389",
+    "name": "Ukraine",
+    "format": "+380 (__) ___ __ __"
+  },
+  {
+    "code": "+971",
+    "name": "United Arab Emirates",
+    "format": "+971 ___ ___ ___ ___"
+  },
+  {
+    "code": "+44",
+    "name": "United Kingdom",
+    "format": "+44 ____ ______"
+  },
+  {
+    "code": "+1",
+    "name": "United States",
+    "format": "+1 (___) ___-____"
+  },
+  {
+    "code": "+598",
+    "name": "Uruguay",
+    "format": "+598 ___ ___ ___ ___"
+  },
+  {
+    "code": "+998",
+    "name": "Uzbekistan",
+    "format": "+998 ___ ___ ___ ___"
+  },
+  {
+    "code": "+678",
+    "name": "Vanuatu",
+    "format": "+678 ___ ___ ___ ___"
+  },
+  {
+    "code": "+39",
+    "name": "Vatican City",
+    "format": "+39 __ ____ ____"
+  },
+  {
+    "code": "+58",
+    "name": "Venezuela",
+    "format": "+58 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+84",
+    "name": "Vietnam",
+    "format": "+84 ___ ___ ___ ___ _"
+  },
+  {
+    "code": "+681",
+    "name": "Wallis and Futuna",
+    "format": "+681 ___ ___ ___ ___"
+  },
+  {
+    "code": "+967",
+    "name": "Yemen",
+    "format": "+967 ___ ___ ___ ___"
+  },
+  {
+    "code": "+260",
+    "name": "Zambia",
+    "format": "+260 ___ ___ ___ ___"
+  },
+  {
+    "code": "+263",
+    "name": "Zimbabwe",
+    "format": "+263 ___ ___ ___ ___"
   }
-
 ]
