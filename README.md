@@ -17,7 +17,7 @@ dependencies {
 # Usage
 
 ```
-    <ru.vvdev.phonemask.PhoneView
+    <ru.vvdev.phonemask.ui.PhoneView
         android:id="@+id/etPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
