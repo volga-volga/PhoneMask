@@ -5,6 +5,7 @@ import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.DigitsKeyListener
+import android.util.Log
 import android.widget.EditText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -82,6 +83,7 @@ open class PhoneTextWatcher(
                         return
                     } else if (clearedText.contains(it.code) && lastFormat != null && it.code.length > lastFormat?.code?.length ?: 0) {
                         removeFormat(it.code)
+                        handler.postDelayed({setFormat(it)}, 100)
                         return
                     }
                 }
