@@ -11,7 +11,7 @@ This project using [Decoro](https://github.com/TinkoffCreditSystems/decoro) for 
 
 ```
 dependencies {
-    implementation 'ru.vvdev.phonemask:phonemask:$latestVersion'
+    implementation 'com.github.volga-volga:PhoneMask:$latestVersion'
 }
 ```
 # Usage
