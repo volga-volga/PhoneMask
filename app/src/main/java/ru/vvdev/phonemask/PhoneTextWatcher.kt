@@ -90,7 +90,7 @@ open class PhoneTextWatcher(
 
     fun setFormatFromPicker(format: Format) {
         removeFormat(format.code)
-        handler.postDelayed({ setFormat(format) }, 100)
+        handler.postDelayed({ setFormat(format, ' ', true) }, 100)
     }
 
     private fun removeFormat(code: String = "") {
@@ -106,14 +106,14 @@ open class PhoneTextWatcher(
         }, 0)
     }
 
-    private fun setFormat(format: Format, append: Char = ' ') {
+    private fun setFormat(format: Format, append: Char = ' ', force: Boolean = false) {
         lastFormat = format
         listener?.formatChanged(format)
         val slots = UnderscoreDigitSlotsParser().parseSlots(format.format);
         formatWatcher = SafeMaskFormatWatcher(MaskImpl.createTerminated(slots));
         blocked = true
         formatWatcher?.installOn(editText)
-        if (append != ' ') editText.text.append(append)
+        if (append != ' ' || force) editText.text.append(append)
         unblock(100)
         handler.postDelayed({ editText?.setSelection(editText?.text?.length ?: 0) }, 0)
     }

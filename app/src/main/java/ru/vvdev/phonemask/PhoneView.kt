@@ -1,14 +1,14 @@
 package ru.vvdev.phonemask
 
 import android.content.Context
-import android.text.InputFilter
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,14 +24,14 @@ class PhoneView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyle), PhoneListener {
 
     private val editText: EditText
-    private val countryName: TextView
+    private val countryFlag: ImageView
     private var listener: PhoneListener? = null
     private var phoneTextWatcher: PhoneTextWatcher
 
     init {
         orientation = HORIZONTAL
         editText = initEditText()
-        countryName = initCountry()
+        countryFlag = initFlag()
 
         var defaultCode = ""
         attrs?.let {
@@ -50,7 +50,7 @@ class PhoneView @JvmOverloads constructor(
 
         phoneTextWatcher = PhoneTextWatcher(editText, this@PhoneView, defaultCode)
         editText.addTextChangedListener(phoneTextWatcher)
-        addView(countryName)
+        addView(countryFlag)
         addView(editText)
     }
 
@@ -59,7 +59,11 @@ class PhoneView @JvmOverloads constructor(
     }
 
     override fun formatChanged(format: Format) {
-        countryName.text = format.name
+        context?.let {
+            it.getDrawableForFormat(format)?.let {
+                countryFlag.setImageDrawable(it)
+            }
+        }
     }
 
     private fun initEditText() =
@@ -69,11 +73,10 @@ class PhoneView @JvmOverloads constructor(
             }
         }
 
-    private fun initCountry() =
-        TextView(context).apply {
+    private fun initFlag() =
+        ImageView(context).apply {
             layoutParams = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
-            filters = filters.plus(InputFilter.LengthFilter(10))
-            text = "country"
+            gravity = Gravity.CENTER
 
             setOnClickListener {
                 showPickDialog()
@@ -93,7 +96,7 @@ class PhoneView @JvmOverloads constructor(
         dialogView.rvFormats.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = FormatAdapter(formats, object : FormatAdapter.Listener{
+            adapter = FormatAdapter(context, formats, object : FormatAdapter.Listener {
                 override fun formatClicked(format: Format) {
                     phoneTextWatcher.setFormatFromPicker(format)
                     dialog.dismiss()

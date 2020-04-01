@@ -1,12 +1,13 @@
 package ru.vvdev.phonemask
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_format.view.*
 
-class FormatAdapter(val data: List<Format>, val listener: Listener) :
+class FormatAdapter(val context: Context?, val data: List<Format>, val listener: Listener) :
     RecyclerView.Adapter<FormatAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
@@ -18,14 +19,18 @@ class FormatAdapter(val data: List<Format>, val listener: Listener) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val format = data[position]
         holder?.apply {
-            code.text = format.code
             country.text = format.name
+
+            context?.let {
+                it.getDrawableForFormat(format)?.let {
+                    flag.setImageDrawable(it)
+                }
+            }
         }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val flag = itemView.ivFlag
-        val code = itemView.tvCode
         val country = itemView.tvCountry
 
         init {
