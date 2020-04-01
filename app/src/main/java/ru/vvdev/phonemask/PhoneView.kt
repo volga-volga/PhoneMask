@@ -75,7 +75,9 @@ class PhoneView @JvmOverloads constructor(
 
     private fun initFlag() =
         ImageView(context).apply {
-            layoutParams = LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+            layoutParams = LayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
+                setMargins(0, 4, 0, 0)
+            }
             gravity = Gravity.CENTER
 
             setOnClickListener {
