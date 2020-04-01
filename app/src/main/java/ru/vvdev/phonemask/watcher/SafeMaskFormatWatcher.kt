@@ -1,4 +1,4 @@
-package ru.vvdev.phonemask
+package ru.vvdev.phonemask.watcher
 
 import ru.tinkoff.decoro.MaskImpl
 

@@ -1,16 +1,17 @@
-package ru.vvdev.phonemask
+package ru.vvdev.phonemask.watcher
 
 import android.content.Context
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.DigitsKeyListener
-import android.util.Log
 import android.widget.EditText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
+import ru.vvdev.phonemask.model.Format
+import ru.vvdev.phonemask.ui.PhoneListener
 import java.util.*
 
 open class PhoneTextWatcher(
@@ -112,7 +113,9 @@ open class PhoneTextWatcher(
         lastFormat = format
         listener?.formatChanged(format)
         val slots = UnderscoreDigitSlotsParser().parseSlots(format.format);
-        formatWatcher = SafeMaskFormatWatcher(MaskImpl.createTerminated(slots));
+        formatWatcher = SafeMaskFormatWatcher(
+            MaskImpl.createTerminated(slots)
+        );
         blocked = true
         formatWatcher?.installOn(editText)
         if (append != ' ' || force) editText.text.append(append)

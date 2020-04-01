@@ -1,4 +1,4 @@
-package ru.vvdev.phonemask
+package ru.vvdev.phonemask.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_format.view.*
+import ru.vvdev.phonemask.R
+import ru.vvdev.phonemask.util.getDrawableForFormat
+import ru.vvdev.phonemask.model.Format
 
 class FormatAdapter(val context: Context?, val data: List<Format>, val listener: Listener) :
     RecyclerView.Adapter<FormatAdapter.ViewHolder>() {

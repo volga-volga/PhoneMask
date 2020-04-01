@@ -1,4 +1,4 @@
-package ru.vvdev.phonemask
+package ru.vvdev.phonemask.ui
 
 import android.content.Context
 import android.util.AttributeSet
@@ -15,6 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_pick_format.view.*
+import ru.vvdev.phonemask.watcher.PhoneTextWatcher
+import ru.vvdev.phonemask.R
+import ru.vvdev.phonemask.util.getDrawableForFormat
+import ru.vvdev.phonemask.model.Format
 
 
 class PhoneView @JvmOverloads constructor(
@@ -48,7 +52,11 @@ class PhoneView @JvmOverloads constructor(
 
         }
 
-        phoneTextWatcher = PhoneTextWatcher(editText, this@PhoneView, defaultCode)
+        phoneTextWatcher = PhoneTextWatcher(
+            editText,
+            this@PhoneView,
+            defaultCode
+        )
         editText.addTextChangedListener(phoneTextWatcher)
         addView(countryFlag)
         addView(editText)
@@ -98,12 +106,15 @@ class PhoneView @JvmOverloads constructor(
         dialogView.rvFormats.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = FormatAdapter(context, formats, object : FormatAdapter.Listener {
-                override fun formatClicked(format: Format) {
-                    phoneTextWatcher.setFormatFromPicker(format)
-                    dialog.dismiss()
-                }
-            })
+            adapter = FormatAdapter(
+                context,
+                formats,
+                object : FormatAdapter.Listener {
+                    override fun formatClicked(format: Format) {
+                        phoneTextWatcher.setFormatFromPicker(format)
+                        dialog.dismiss()
+                    }
+                })
         }
         dialog.setView(dialogView)
         dialog.show()

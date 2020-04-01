@@ -1,7 +1,8 @@
-package ru.vvdev.phonemask
+package ru.vvdev.phonemask.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ru.vvdev.phonemask.R
 
 
 class MainActivity : AppCompatActivity() {

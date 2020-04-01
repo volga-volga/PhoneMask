@@ -1,8 +1,9 @@
-package ru.vvdev.phonemask
+package ru.vvdev.phonemask.util
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.app.ActivityCompat
+import ru.vvdev.phonemask.model.Format
 
 fun Context.getDrawableForFormat(format: Format): Drawable? {
     return try {

@@ -1,4 +1,4 @@
-package ru.vvdev.phonemask
+package ru.vvdev.phonemask.watcher
 
 import android.text.Editable
 import ru.tinkoff.decoro.watchers.FormatWatcher
