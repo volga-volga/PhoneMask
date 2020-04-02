@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_pick_format.view.*
-import ru.vvdev.phonemask.watcher.PhoneTextWatcher
 import ru.vvdev.phonemask.R
-import ru.vvdev.phonemask.util.getDrawableForFormat
 import ru.vvdev.phonemask.model.Format
+import ru.vvdev.phonemask.util.getDrawableForFormat
+import ru.vvdev.phonemask.watcher.PhoneTextWatcher
 
 
 class PhoneView @JvmOverloads constructor(
@@ -64,6 +64,15 @@ class PhoneView @JvmOverloads constructor(
 
     fun setListener(listener: PhoneListener) {
         this.listener = listener
+    }
+
+    fun getValue(withFormat: Boolean = false): String {
+        return if (withFormat) editText.text.toString()
+        else editText.text.toString()
+            .replace(" ", "")
+            .replace("-", "")
+            .replace("(", "")
+            .replace(")", "")
     }
 
     override fun formatChanged(format: Format) {
