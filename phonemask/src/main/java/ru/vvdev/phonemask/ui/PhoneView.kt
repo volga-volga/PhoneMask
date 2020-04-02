@@ -73,6 +73,7 @@ class PhoneView @JvmOverloads constructor(
             .replace("-", "")
             .replace("(", "")
             .replace(")", "")
+            .trim()
     }
 
     override fun formatChanged(format: Format) {
