@@ -2,5 +2,7 @@
 <resources>
     <declare-styleable name="PhoneView">
         <attr name="defaultCode" format="string" />
+        <attr name="flagEnabled" format="boolean" />
+        <attr name="lineColor" format="color" />
     </declare-styleable>
 </resources>

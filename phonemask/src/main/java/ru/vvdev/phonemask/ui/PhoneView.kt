@@ -1,6 +1,7 @@
 package ru.vvdev.phonemask.ui
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.res.getColorOrThrow
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -34,10 +36,10 @@ class PhoneView @JvmOverloads constructor(
 
     init {
         orientation = HORIZONTAL
-        editText = initEditText()
-        countryFlag = initFlag()
 
         var defaultCode = ""
+        var flagEnabled = true
+        var lineColor: Int? = null
         attrs?.let {
             val a = context.theme.obtainStyledAttributes(
                 attrs,
@@ -50,7 +52,21 @@ class PhoneView @JvmOverloads constructor(
                 ""
             }
 
+            flagEnabled = try{
+                a.getBoolean(R.styleable.PhoneView_flagEnabled, true)
+            }catch (e: Exception){
+                true
+            }
+
+            lineColor = try{
+                a.getColorOrThrow(R.styleable.PhoneView_lineColor)
+            }catch (e: Exception){
+                null
+            }
         }
+
+        editText = initEditText(lineColor)
+        countryFlag = initFlag()
 
         phoneTextWatcher = PhoneTextWatcher(
             editText,
@@ -58,7 +74,7 @@ class PhoneView @JvmOverloads constructor(
             defaultCode
         )
         editText.addTextChangedListener(phoneTextWatcher)
-        addView(countryFlag)
+        if(flagEnabled) addView(countryFlag)
         addView(editText)
     }
 
@@ -84,11 +100,12 @@ class PhoneView @JvmOverloads constructor(
         }
     }
 
-    private fun initEditText() =
+    private fun initEditText(color: Int?) =
         AppCompatEditText(context).apply {
             layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT).apply {
                 setMargins(16, 0, 0, 0)
             }
+            color?.let { setBackgroundResource(it) }
         }
 
     private fun initFlag() =
