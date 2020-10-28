@@ -90,6 +90,12 @@ class PhoneView @JvmOverloads constructor(
             .trim()
     }
 
+    fun setValue(value: String) {
+        val text = value.replace(Regex("[^0-9.]"), "")
+        editText.text.delete(1, editText.length())
+        for (i in text.indices) editText.text.append(text[i].toString())
+    }
+
     override fun formatChanged(format: Format) {
         context?.let {
             it.getDrawableForFormat(format)?.let {
